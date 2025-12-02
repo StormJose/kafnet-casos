@@ -1,0 +1,63 @@
+@import "tailwindcss";
+
+:root {
+  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+
+  color-scheme: light dark;
+  color: rgba(0, 0, 0, 0.87);
+  background-color: #fff;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+
+
+
+
+body {
+  background-color: #fff;
+  height: 100%;
+}
+
+
+/* Animação nas linhas tracejadas */
+
+.flow-dash {
+  stroke-dasharray: 10 8;
+  animation: dashFlow 2s linear infinite;
+}
+
+@keyframes dashFlow {
+  to {
+    stroke-dashoffset: -18;
+  }
+}
+
+/* Pizza Chart */
+
+.pizza-chart {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  background: conic-gradient(
+    #db324b 0% 70%,  /* filled portion */
+    #e8e8e8 70% 100%  /* empty portion */
+  );
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 1.5rem;
+  position: relative;
+}
+
+.center-label {
+  color: #333;
+}
+
+
