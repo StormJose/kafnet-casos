@@ -16,7 +16,7 @@ export function Heading({ size = "sm", children, className }: HeadingProps) {
 
 
   return (
-    <h1 className={`${theme.sizes.headings[size]} font-bold text-dark rounded-lg ${className}`}>
+    <h1 className={`${theme.sizes.headings[size]} font-bold  text-dark rounded-lg ${className}`}>
       {children}
     </h1>
   );

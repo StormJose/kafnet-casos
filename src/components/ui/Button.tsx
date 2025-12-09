@@ -28,7 +28,7 @@ export function Button({
     `,
     secondary: `
       bg-black
-      
+      text-white
     `,
     outline: `
       border border-[var(--primary)]

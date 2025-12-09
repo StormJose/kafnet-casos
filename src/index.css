@@ -1,5 +1,7 @@
 @import "tailwindcss";
 
+
+
 :root {
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
@@ -15,13 +17,16 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-
+html {
+  scroll-behavior: smooth;
+}
 
 
 
 body {
   background-color: #fff;
   height: 100%;
+  font-family: 'Anybody', sans-serif;
 }
 
 
@@ -38,11 +43,18 @@ body {
   }
 }
 
+
+/* O Problema */
+
+.problema-dashed-line {
+  max-width: 100%;
+}
+
 /* Pizza Chart */
 
 .pizza-chart {
-  width: 200px;
-  height: 200px;
+  width: 120px;
+  height: 120px;
   border-radius: 50%;
   background: conic-gradient(
     #db324b 0% 70%,  /* filled portion */
@@ -60,4 +72,58 @@ body {
   color: #333;
 }
 
+/* Pizza Chart for main functionalities section */
 
+.blue-pizza-chart {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  background: conic-gradient(
+    #3B82F6 0% 70%,  /* filled portion */
+    #f1f3f5 70% 100%  /* empty portion */
+  );
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 1.5rem;
+  position: relative;
+}
+
+.center-label {
+  color: #333;
+}
+
+
+
+/* dotted grid */
+
+.solucoes-dot-grid {
+  background-image: radial-gradient(currentColor 1px, transparent 1px);
+  background-size: 20px 20px;
+  mask-image: linear-gradient(135deg, black 0%, transparent 100%);
+ 
+}
+
+.dot-grid {
+  background-image: radial-gradient(currentColor 1px, transparent 1px);
+  background-size: 20px 20px;
+  mask-image: linear-gradient(135deg, black 0%, transparent 100%);
+ height: 80px;
+}
+
+
+/* mobile navigation */
+
+@keyframes slideLeft {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(0%);
+  }
+}
+
+.animate-slideLeft {
+  animation: slideLeft 0.25s ease-out;
+}

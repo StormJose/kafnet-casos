@@ -19,12 +19,14 @@ export function Container({children, display, gridColumns, padding, flexCol, cla
     switch (gridColumns) { 
         case '1': 
             gridTemplateColumns = 'grid-cols-1' 
+            break
         case '2': 
-            gridTemplateColumns = 'grid-cols-2' 
+            gridTemplateColumns = 'sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-2' 
+            break
         case '3': 
-            gridTemplateColumns = 'grid-cols-3' 
+            gridTemplateColumns = 'sm:grid-cols-1 md:grid-cols-3' 
     } return ( 
-    <div className={`${display} ${gridTemplateColumns} max-w-[1300px]  m-[0_auto] ${padding} ${flexCol ? 'flex-col' : 'flex-row'} ${className} ${props}` }> 
+    <div className={`${display} ${gridTemplateColumns} max-w-[1300px] m-[0_auto] sm:px-8 px-4  ${padding} ${flexCol ? 'flex-col' : 'flex-row'} ${className} ${props}` }> 
         {children} 
     </div> ) 
     

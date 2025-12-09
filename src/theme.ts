@@ -4,22 +4,21 @@ export const lightTheme = {
     colors: {
         main: '#db324b',
         secondary: '',
-        background: '#fff',
-        text: '#000',
+        background: 'bg-white',
+        text: 'text-[#000]',
         gray: '#f1f5f9'
         
     },
     sizes: {
         headings: {
-
-            sm: "text-[24px]",
-            md: "text-[44px]",
-            lg: "text-[60px]",
+            sm: "text-[20px] md:text-[24px] ",
+            md: "text-[28px] md:text-[44px]",
+            lg: "text-[44px] md:text-[60px]",
         },
         text: {
-            sm: "text-sm",
-            md: "text-[24px]",
-            lg: "text-[32px]",
+            sm: "md:text-sm",
+            md: "text-[16px] md:text-[21x]",
+            lg: "text-[22px] md:text-[29px]",
         },
         padding: {
             sm: "px-2 py-1.5",
@@ -33,7 +32,11 @@ export const lightTheme = {
 }
 
 export const darkTheme = {
-    colors: lightTheme.colors,
+    colors: {
+        ...lightTheme.colors,
+        background: 'bg-dark',
+        text: 'text-white',
+    },
     sizes: lightTheme.sizes,
     breakpoints: lightTheme.breakpoints
 }

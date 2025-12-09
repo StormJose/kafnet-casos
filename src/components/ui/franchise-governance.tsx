@@ -48,13 +48,13 @@ export function FranchiseGovernance() {
           />
         </Switch.Root>
 
-        <span className="text-sm font-medium text-[#db324b]">
+        <span className="text-sm font-medium text-emerald-500">
           Consistente
         </span>
       </div>
 
       {/* ---------- CONTENT AREA ---------- */}
-      <div className="relative w-full h-64 shadow-md rounded-xl bg-white overflow-hidden p-6">
+      <div className="relative w-full h-64 rounded-xl bg-white overflow-hidden p-6">
         {/* BEFORE (CHAOTIC) */}
         {!isOn && (
           <div className="absolute inset-0 transition-opacity duration-300 flex items-center justify-center">
@@ -83,12 +83,12 @@ export function FranchiseGovernance() {
         {isOn && (
           <div className="absolute inset-0 transition-opacity duration-300 flex items-center justify-center">
             <ul className="flex flex-col gap-3">
-              {consistentTopics.map((t) => (
+              {consistentTopics.map((t) => (  
                 <li
                   key={t}
                   className="
-                    px-4 py-2 bg-[#db324b]/10 border border-[#db324b]/30 
-                    rounded-md text-[#db324b] text-sm font-semibold shadow-sm 
+                    px-4 py-2 border-emerald-500/10 border border-emerald-500/30 
+                    rounded-md text-gray-500 text-sm font-semibold shadow-sm 
                     transition-all duration-500
                   "
                 >

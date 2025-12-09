@@ -3,9 +3,9 @@ import { useTheme } from "../../contexts/ThemeContext";
 import placeHolder from "../../assets/image-placeholder.png"
 
 interface CardProps {
+  children?: React.ReactNode;
   title: string;
   description?: string;
-  children?: React.ReactNode;
   className?: string;
   justifyContent?: string
   borderStyles?: boolean
@@ -13,7 +13,7 @@ interface CardProps {
   image?: string
 }
 
-export function Card({ title, description,  borderStyles, hasImage = false, image, children, className = "" }: CardProps) {
+export function Card({children, title, description,  borderStyles, hasImage = false, image, className = "" }: CardProps) {
   const { theme } = useTheme();
 
   return (
@@ -24,7 +24,7 @@ export function Card({ title, description,  borderStyles, hasImage = false, imag
         border-[1.55px]
         text-left
         transition-all
-        text-[${theme.colors.text}]
+        ${theme.colors.text}
         ${className}
       `}
     >
@@ -88,7 +88,12 @@ export function Card({ title, description,  borderStyles, hasImage = false, imag
           hasImage || image ?
           <img src={image || placeHolder} alt="card image" className="rounded-xl" /> : ""
       }
-      <div className={hasImage ? 'p-6' : ''}>
+      <div className={`${hasImage ? 'p-6' : ''}`}>
+
+        {children}
+ 
+        <div className="mt-4">
+
           <h3 className="text-2xl font-semibold mb-2">
               {title}
           </h3>
@@ -96,9 +101,9 @@ export function Card({ title, description,  borderStyles, hasImage = false, imag
           <p className="text-lg mb-4 opacity-80">
               {description}
           </p>
+        </div>
       </div>
 
-      {children}
     </div>
   );
 }

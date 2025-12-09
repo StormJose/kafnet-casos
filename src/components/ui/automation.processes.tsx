@@ -50,23 +50,23 @@ export function AutomationProcesses ({}: AutomationProcessesProps) {
                 ))}
             </ul>
             */}
-            <div className="grid gap-y-8 bg-gray-50 p-4 rounded-xl" >
-                <div className="flex items-center gap-2">
-                    <div className="bg-emerald-500/20 text-emerald-500 px-2 py-1.5 rounded-xl h-full">
+            <div className="grid gap-y-8 p-4 rounded-xl" >
+                <div className="flex flex-wrap items-center gap-2">
+                    <div className="bg-emerald-500/20 text-emerald-500 px-2 py-1.5 rounded-xl">
                         <span>Operações</span>
                         
                     </div>
                     <MoveRight className="text-gray-600"/>
-                    <div className="bg-emerald-500/20 text-emerald-500 px-2 py-1.5 rounded-xl h-full">
+                    <div className="bg-emerald-500/20 text-emerald-500 px-2 py-1.5 rounded-xl">
                         <span>Financeiro</span>
                     </div>
                      <MoveRight className="text-gray-600" />
-                    <div className="bg-[#db324b]/20 text-[#db324b] px-2 py-1.5 rounded-xl h-full">
+                    <div className="bg-[#db324b]/20 text-[#db324b] px-2 py-1.5 rounded-xl">
                         <span>Conformidade</span>
                     </div>
                     
                      <MoveRight className="text-gray-600" />
-                    <div className="bg-emerald-500/20 text-emerald-500 px-2 py-1.5 rounded-xl h-full">
+                    <div className="bg-emerald-500/20 text-emerald-500 px-2 py-1.5 rounded-xl">
                         Checklists
                     </div>
                 </div>
