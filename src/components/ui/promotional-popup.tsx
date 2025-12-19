@@ -15,7 +15,7 @@ export function PromotionalPopup({isDialogOpen, onHandleToggleDialog}) {
      <div className={isDialogOpen ? "block relative" : "hidden relative" }>  
 
         <div className="   
-                    bg-[url('src/assets/proximos-passos.png')]
+                    bg-[url('./assets/proximos-passos.png')]
                     bg-white
                     fixed bottom-[25px] right-[25px]             
                     z-50 p-8 max-w-screen w-[280px] h-[365px] rounded-xl
