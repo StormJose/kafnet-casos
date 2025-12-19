@@ -11,7 +11,7 @@ export const lightTheme = {
     },
     sizes: {
         headings: {
-            sm: "text-[26px] md:text-[32px] ",
+            sm: "text-[26px] ",
             md: "text-[28px] md:text-[44px]",
             lg: "text-[42px] md:text-[60px]",
         },

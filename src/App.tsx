@@ -24,6 +24,7 @@ import { WhatsAppFloater } from './components/ui/whatsapp-floater';
 import { HeroForm } from './components/ui/hero-form';
 import { Carousel } from './components/ui/carousel';
 import { FeatureCard } from './components/ui/feature-card';
+import { PromotionalPopup } from './components/ui/promotional-popup';
 
 
 function App() {
@@ -202,7 +203,7 @@ const zohoCreator = [
   ]
 
 
-  const [isDialogOpen, setIsDialogOpen] = useState(false)
+  const [isDialogOpen, setIsDialogOpen] = useState(true)
 
   const sectionIds = navLinks
     .map((l) => l.name)
@@ -244,7 +245,7 @@ const zohoCreator = [
               Controle, padronização e visibilidade para crescer sem perder a agilidade.
               </Paragraph>
               <div className='flex items-center gap-4 mt-4 '>
-                <Button className='self-start' icon={<Play/>} onClick={() => scrollToSection('O SaaS')} >Assistir à demonstração</Button>
+                <Button className='self-start' size='sm' icon={<Play/>} onClick={() => scrollToSection('O SaaS')} >Assistir à demonstração</Button>
                 <ArrowDown className='stroke-gray-400'/>
               </div>
             </div>
@@ -266,7 +267,7 @@ const zohoCreator = [
                   </Paragraph>
                 </div>
                 {/* Vídeo */}
-                <div className="iframe-container">
+                <div className="flex justify-center items-center text-center min-w-screen/50 lg:min-w-auto">
                     <iframe  src="https://player.vimeo.com/video/1146683500"
                       width={950} height={530}
                       frameborder="0" allow="autoplay; fullscreen;"
@@ -653,8 +654,9 @@ O que o Kafnet franquias <span className='text-[#db324b]'> entrega: </span>
 
         
         <Footer/>
-      {/*  <VideoDialog onHandleToggleDialog={handleToggleDialog} isDialogOpen={isDialogOpen} /> */}
+        
         <WhatsAppFloater/>
+        <PromotionalPopup isDialogOpen={isDialogOpen}  onHandleToggleDialog={handleToggleDialog} />
       </main>
     </ThemeProvider>
   )

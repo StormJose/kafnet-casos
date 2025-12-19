@@ -64,7 +64,7 @@ export function CustomTabs() {
         </div>
       </div>
 
-      <div className="min-h-[50vh] text-center">
+      <div className="lg:min-h-[25vh] text-center">
         {funcionalidadesPrincipais.map((tab) => (
           <Tabs.Content key={tab.title} value={tab.title} className="py-4 ">
             <motion.div

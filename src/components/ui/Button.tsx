@@ -3,6 +3,7 @@ import { useTheme } from "../../contexts/ThemeContext";
 
 interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   children: React.ReactNode;
+  to: string;
   variant?: "primary" | "secondary" | "outline";
   size?: "sm" | "md" | "lg";
   fullWidth?: boolean;
@@ -11,6 +12,7 @@ interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
 
 export function Button({
   children,
+  to,
   variant = "primary",
   size = "md",
   fullWidth = false,
@@ -37,7 +39,19 @@ export function Button({
     `
   };
 
-  return (
+
+  if (to) {
+    <a
+        
+    className={`
+        ${theme.sizes.text[size]}
+        ${theme.sizes.padding[size]}
+        ${variants[variant]}
+        ${className}`} href={to} target="_blank">
+        {children}
+    </a>
+  }
+  else return (
     <button
       className={`
         ${icon && 'flex items-center gap-2'}

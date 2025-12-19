@@ -45,7 +45,6 @@ export function Carousel({ children }: CarouselProps) {
           ref={viewportRef}
           className="max-w-screen overflow-x-auto"
         >
-         
           <div
             className="
               flex gap-6
