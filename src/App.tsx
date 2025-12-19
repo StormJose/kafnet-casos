@@ -8,46 +8,36 @@ import { Heading } from './components/ui/Heading'
 import { Paragraph } from './components/ui/Paragraph'
 import { Section } from './components/layouts/section'
 import { Button } from './components/ui/Button'
-import { ArrowDown, ArrowRight, ChartNoAxesColumnIncreasing, Check, CircleGauge, Grid2X2Check, ImageUpscale } from 'lucide-react'
+import { ArrowDown, ArrowRight, ChartNoAxesColumnIncreasing, Check, CircleGauge, Grid2X2Check, ImageUpscale, Play, Star } from 'lucide-react'
 import { Card } from './components/ui/card'
-import creatorLogo from "./assets/zoho_creator.png";
+// import creatorLogo from "./assets/zoho_creator.png";
+import kafnetLogo from "./assets/kafnet-logo-filled.png"
 import { CustomTabs } from './components/layouts/tabs'
 import { CustomizedCRM } from './components/ui/customized-crm'
 import { Header } from './components/layouts/header'
+import { Footer } from './components/layouts/footer';
+import proximosPassos from "./assets/proximos-passos.png";
+import { FormZoho } from './components/ui/ContactForm';
+import { useActiveSection } from './hooks/useActiveSection';
+import { VideoDialog } from './components/ui/video-dialog';
+import { WhatsAppFloater } from './components/ui/whatsapp-floater';
+import { HeroForm } from './components/ui/hero-form';
+import { Carousel } from './components/ui/carousel';
+import { FeatureCard } from './components/ui/feature-card';
+
 
 function App() {
   const [count, setCount] = useState(0)
 
-  const problemas = [
-  {
-    titulo: "Silos de informação",
-    descricao: "Cada unidade usa planilhas, CRMs ou sistemas diferentes."
-  },
-  {
-    titulo: "Decisões lentas",
-    descricao: "Sem dados em tempo real, gestores tomam decisões baseadas em 'achismos'."
-  },
-  {
-    titulo: "Falta de padronização",
-    descricao: "Operações variam muito entre franqueados, gerando inconsistência e retrabalho."
-  },
-  {
-    titulo: "Baixa visibilidade",
-    descricao: "Sem um painel unificado, a franqueadora não sabe como cada unidade está performando."
-  },
-  {
-    titulo: "Risco financeiro",
-    descricao: "Falhas nos processos operacionais e financeiros podem elevar custos e impactar a rede."
-  },
-  {
-    titulo: "Crescimento limitado",
-    descricao: "Sistemas legados não escalam bem e exigem tempo ou recursos altos para personalização."
-  }
+  const antigosProblemas = [
+  { titulo: "Visão completa da performance de cada unidade" },
+  { titulo: "Decisões rápidas e estratégicas, baseadas em dados em tempo real" },
+  { titulo: "Padronização operacional, reduzindo inconsistências e retrabalho" },
+  { titulo: "Crescimento sustentável, sem depender de sistemas engessados" },
 ];
 
 
 const casosDeUso = [
-
   {
     id: 1,
     title: "Franquias que querem padronizar processos entre franqueados",
@@ -83,21 +73,6 @@ const casosDeUso = [
 
 
 
-const zohoCreator = [
-  {
-    title: "Velocidade de entrega",
-    description: "Protótipos ou novas funcionalidades podem ser criados em semanas, não meses."
-  },
-  {
-    title: "Segurança robusta",
-    description: "A base Zoho Creator garante confiabilidade e escalabilidade global."
-  },
-  {
-    title: "Flexível e configurável",
-    description: "Módulos podem ser adaptados a diferentes modelos de franquia — seja unidades pequenas ou grandes redes."
-  }
-]
-
 
 const beneficios = [
   {
@@ -128,117 +103,213 @@ const beneficios = [
 ];
 
 const solucaoKafnet = [
+  
   {
     title: "Centralização completa",
-    description:
-      "Todas as informações da rede em um só lugar, desde operações até finanças e CRM.",
-    
+    description: "Todas as informações da rede em um só lugar, conectando operações, atendimento e relacionamento com clientes."
   },
   {
     title: "Integração de unidades",
-    description:
-      "Franqueadora e franqueados operam em um ecossistema integrado e padronizado.",
+    description: "Franqueadora e franqueados trabalham em um ecossistema único, com processos alinhados e padronização consistente."
   },
   {
     title: "Automação inteligente",
-    description:
-      "Fluxos automatizados garantem que processos críticos sejam executados sem erro.",
+    description: "Fluxos automatizados asseguram a execução correta das etapas críticas da operação."
   },
   {
     title: "Relatórios em tempo real",
-    description:
-      "Dashboards com indicadores acionáveis para decisões estratégicas.",
+    description: "Dashboards com indicadores práticos que mostram o desempenho da rede no exato momento em que acontecem."
   },
   {
     title: "Alta escalabilidade",
-    description:
-      "A plataforma evolui conforme sua rede cresce, sem exigir reescrita de sistemas ou grandes esforços técnicos.",
-    
+    description: "A solução acompanha a evolução da rede, permitindo expansão sem complexidade ou reestruturações."
+  }
+
+];
+
+
+const zohoCreator = [
+  {
+    title: "RECONHECIMENTO COMO CREATOR PARTNER CHAMPION DE 2024 (ÚNICO NA AMÉRICA LATINA)",
+    description: "Este prêmio destaca a excelência e o desempenho de parceiros que que utilizam a plataforma Zoho Creator para desenvolver soluções inovadoras."
   },
-];
+  {
+    title: "STATUS DE PREMIUM PARTNER DA ZOHO",
+    description: "Indica uma parceria forte e reconhecida com a Zoho, refletindo a qualidade dos serviços prestados em 13 anos de parceria."
+  },
+  {
+    title: "CERTIFICAÇÃO COMO ZOHO EDUCATION PARTNER (APENAS 2 NO MUNDO)",
+    description: "Este reconhecimento demonstra a capacidade de fornecer soluções educacionais eficazes utilizando a plataforma Zoho."
+  }
+]
+
+  const objetivos = [
+    { boldText: 'Elimine silos de informação',  text: " e conecte todos os pontos da rede em um único ecossistema." },
+    { boldText: 'Agilize decisões', text: " com dados confiáveis e visibilidade total das unidades." },
+    { boldText: 'Padronize operações', text: " sem engessar o modelo de negócio." },
+    { boldText: 'Aumente a visibilidade da rede', text: " com indicadores claros e comparáveis por unidade ou região." },
+    { boldText: 'Escale sem dores,', text: " mantendo consistência mesmo em momentos de expansão acelerada." },
+  ];
 
 
-const objetivos = [
-  { text: "Eliminar silos de informação" },
-  { text: "Agilizar decisões" },
-  { text: "Padronizar operações" },
-  { text: "Aumentar a visibilidade da rede" },
-  { text: "Escalar sem dores" },
-];
+  const segurancaFeatures = [
+    {
+      title: "Dados de apps protegidos em todos os estágios",
+      description:
+        "Todos os seus arquivos, bancos de dados, unidades de nuvem, feeds de URL da web e dados armazenados em aplicativos são protegidos com protocolos rígidos de segurança e em conformidade com leis de privacidade.",
+      bullets: [
+        "Conformidade com GDPR e HIPAA",
+        "Autenticação em vários fatores",
+        "Isolamento de dados",
+      ],
+    },
+    {
+      title: "Alcance um ambiente de nuvem seguro",
+      description:
+        "Da segurança de infraestrutura e rede ao gerenciamento de incidentes e controles de clientes, políticas de nível empresarial cobrem todos os aspectos do seu aplicativo.",
+      bullets: [
+        "Estrutura de segurança baseada em OWASP",
+        "Políticas DMARC para evitar spam",
+        "Recuperação de desastres e continuidade dos negócios",
+      ],
+    },
+    {
+      title: "Garanta adesão a requisitos comerciais e regulatórios",
+      description:
+        "Reduza riscos organizacionais, aumente a transparência e atenda às normas do setor com certificações reconhecidas.",
+      bullets: [
+        "ISO/IEC 27001",
+        "SOC 2 + HIPAA",
+        "Privacy Shield Framework UE e EUA",
+      ],
+    },
+    {
+      title: "Priorização das preferências de privacidade",
+      description:
+        "A privacidade dos dados do usuário é prioridade máxima em toda a plataforma.",
+      bullets: [
+        "Nunca vendemos dados",
+        "Dados excluídos após 6 meses de contas encerradas",
+        "Certificação ISO 27001",
+      ],
+    },
+  ];
+
+
+  const navLinks = [
+
+     {id: 8, name: "Contato"}
+  ]
+
+
+  const [isDialogOpen, setIsDialogOpen] = useState(false)
+
+  const sectionIds = navLinks
+    .map((l) => l.name)
+    .filter((name) => name !== "A Kafnet" || name !== "hero");
+
+  const { scrollToSection } = useActiveSection(sectionIds)
+  
+  function handleToggleDialog() {
+    console.log(isDialogOpen)
+    setIsDialogOpen(cur => !cur)
+  }
 
 
   return (
    
     <ThemeProvider>
-      <main>
+      <main className='bg-[#f3f3f5]'>
         <Header/>
-        <Section id='hero'>
-          <Container display='grid' gridColumns='2' padding='py-[140px]' className="gap-x-2">
-            <div className='text-left flex flex-col gap-2'>
-              <Heading size='lg'>
-                Lorem ipsum dolor sit amet.
+        <Section className="relative bg-[url('./assets/hero.png')] bg-cover text-white overflow-hidden" >
+          <div
+          className=" 
+            absolute 
+            inset-0
+            z-0
+            pointer-events-none
+            bg-gradient-to-l
+            from-black/80
+            via-black/60
+            to-transparent
+          "
+        ></div>
+          <Container display='grid' gridColumns='2' padding='pt-8 lg:pt-[140px]' className="relative z-10 gap-x-24 gap-y-24">
+            <div className='text-left flex flex-col gap-1 backdrop-filter pr-8 lg:pb-[260px]'>
+              <Heading className='lg:whitespace-nowrap' size='lg' >
+                Sistema de Gestão <br></br>  <span className="font-thin"> para Franquias </span>
               </Heading>
-              <Paragraph size='md'>
-              <strong>Transforme a operação da sua franquia com uma plataforma inteligente em low-code </strong> 
+              <Paragraph size='sm'>
+                <strong>Transforme a operação da sua franquia com uma plataforma inteligente em low-code </strong> 
               Controle, padronização e visibilidade para crescer sem perder a agilidade.
               </Paragraph>
               <div className='flex items-center gap-4 mt-4 '>
-                <Button className='self-start'>Solicitar demonstração</Button>
+                <Button className='self-start' icon={<Play/>} onClick={() => scrollToSection('O SaaS')} >Assistir à demonstração</Button>
                 <ArrowDown className='stroke-gray-400'/>
               </div>
             </div>
             <div className='w-'>  
-
+              <HeroForm/>
             </div>
           </Container>  
         </Section>
-
+      
         {/* O Problema */}
-        <Section id="O Problema">
+        <Section id="O SaaS">
             <Container className="relative  gap-y-12">
                 <div className='text-center flex flex-col gap-4'>
                   <Heading size='md'>
-                    Desafios de franquias em desenvolvimento 
+                     Desenvolva com segurança. 
                   </Heading>
                   <Paragraph padding='lg:px-60'>
-                    Franquias em expansão lidam com um dilema doloroso: quanto mais unidades você
-      abre, mais processos se perdem. Isso pode significar:
+                    Potencialize a expansão da sua rede com a tranquilidade de saber que seus processos acompanham seu crescimento.
                   </Paragraph>
+                </div>
+                {/* Vídeo */}
+                <div className="iframe-container">
+                    <iframe  src="https://player.vimeo.com/video/1146683500"
+                      width={950} height={530}
+                      frameborder="0" allow="autoplay; fullscreen;"
+                      allowfullscreen>
+                    </iframe>
                 </div>
               <div className="relative mt-16">
                 <div
                   className="
                     relative
                     grid 
-            
                     grid-cols-1 
                     md:grid-cols-2 
                     lg:grid-cols-4 
                     gap-x-8
                     gap-y-6
-                    justify-center
+                   
                     md:gap-0
+                    md:gap-y-6
                   "
                 >
-                  {problemas.map(({ titulo, descricao }, i) => (
-                    <div className='flex flex-col md:flex-row items-center  '>
+                  {antigosProblemas.map(({ titulo }, i) => (
+                    <div className={`flex md:flex-row grow ${i != 3 && 'justify-center' } `}>
                     <Card
                       key={titulo}
-                      title={titulo}
-                      description={descricao}  
+                      description={titulo}
                       className={`
                         z-30
                         relative
                         border-[#db324b]
                         border-dashed
                         px-6 py-8
-                        min-w-60
-                        w-full
-                        bg-gray-50
-                        ${i === 4 || i === 5 ? 'col-end-2' : ''}
+                        text-center
+                        min-h-[240px]
+                        grow 
+                       bg-white
+                        
+                        ${i === 3 ? 'lg:max-w-[240px]' : ''}
                         ${i % 2 !== 0 ? 'lg:self-end' : 'lg:self-start'} 
                         `}
-                        />
+                        >
+                          <Star/>
+                        </Card>
                         {/* Logic for the Dashed SVGS starts here */}
                         {i % 2 === 0 ? 
                        <svg className={ `problema-dashed-line hidden md:block aspect-square drop-shadow-[0_0_6px_#db324b]
@@ -263,16 +334,13 @@ const objetivos = [
                           stroke-linejoin="round"
                         />
                       </svg>
-                    
-                    
-
                     :
 
                     // Last element of the first row do not get a dashed line
                     i  === 3 ? "" :
 
-                    i % 2 !== 0 && i !== problemas.length - 1 ?  
-                    <svg className='hidden md:block lg:self-start' xmlns="http://www.w3.org/2000/svg" width="240" height="460"  viewBox="20 110 220 230">
+                    i % 2 !== 0 && i !== antigosProblemas.length - 1 ?  
+                    <svg className='hidden md:block lg:self-start' xmlns="http://www.w3.org/2000/svg" width="240" height="460"  viewBox="20 50 220 230">
                       <path 
                       className="flow-dash"
                       d="
@@ -292,9 +360,9 @@ const objetivos = [
                         stroke-linejoin="round"
                       />
                     </svg>
-                    : i === problemas.length  
+                    : i === antigosProblemas.length  
                     ?  
-                    <svg className='hidden md:block' xmlns="http://www.w3.org/2000/svg" width="460" height="460" viewBox="20 110 220 230">
+                    <svg className='hidden md:block' xmlns="http://www.w3.org/2000/svg" width="240" height="460" viewBox="20 110 220 230">
                       <path 
                       className="flow-dash"
                       d="
@@ -316,51 +384,53 @@ const objetivos = [
                     </svg> 
                     : ""
                     }
-
                     </div>
                   ))}
                 </div>
               </div>
             </Container>
-
         </Section>
 
           {/* A Solução Kafnet */}
-          <Section id="Solução">
+          <Section id="Recursos">
             <Container display='grid' className='gap-y-12' >
                 <div className='text-center flex flex-col gap-4'>
                     <Heading size='md'>
-                      A Solução Kafnet
+                      Expanda sua rede de franquias com segurança e eficiência
                     </Heading>
                     <Paragraph padding='lg:px-60'>
-                   Apresentamos uma plataforma low-code, desenvolvida no Zoho Creator e projetada para redes de franquias que precisam crescer com padronização, inteligência e controle operacional.
+                   O sistema de gestão Kafnet franquias, foi desenvolvido para redes e franqueados que desejam crescer mantendo o controle operacional, padronização e inteligência.
+
+O que o Kafnet franquias <span className='text-[#db324b]'> entrega: </span>
                     </Paragraph>
-                    <Paragraph className='text-[#db324b]' >O que entrega:</Paragraph>
+              
                   </div>
               <div className='grid grid-cols-1 md:grid-cols-3 gap-x-4 gap-y-4'>
+                {solucaoKafnet.map(({title, description}) => (
+                  <Card key={title} title={title} description={description} className='border-[#db324b] border-dashed p-8 bg-white' />
+                  ))}
 
-              {solucaoKafnet.map(({title, description}) => (
-                <Card key={title} title={title} description={description} className='border-[#db324b] border-dashed p-8' />
+                <div className='flex flex-col justify-between items-center gap-4 p-8 border-[1.55px] border-black rounded-xl'>
+                    <Paragraph className='text-black'>Eleve o padrão da sua franqueadora</Paragraph>              
+                        <div className='flex'>
+                           <div className='solucoes-dot-grid w-1/8 flex flex-col justify-between  text-2xl p-6 rounded-xl'>
+                          </div>
+                           <div className='solucoes-dot-grid w-1/8 flex flex-col justify-between  text-2xl p-6 rounded-xl'>
+                          </div>
+                          <div className='solucoes-dot-grid w-1/8 flex flex-col justify-between  text-2xl p-6 rounded-xl'>
+                          </div>
+                          <div className='solucoes-dot-grid w-1/8 flex flex-col justify-between  text-2xl p-6 rounded-xl'>
+                          </div>
+                          <div className='solucoes-dot-grid w-1/8 flex flex-col justify-between  text-2xl p-6 rounded-xl'>
+                          </div>
+                          <div className='solucoes-dot-grid w-1/8 flex flex-col justify-between  text-2xl p-6 rounded-xl'>
+                          </div>
+                        </div>
+                      
                 
-                ))}
-
-                <div className='flex flex-wrap justify-between p-8 pb-0'>
-
-                    <Paragraph className='text-black'>Lorem ipsum dolor sit amet</Paragraph>
-                   
-                    <div className='flex flex-wrap align-center justify-between'>
-                      <div className='solucoes-dot-grid w-1/8 flex flex-col justify-between  text-2xl p-6 rounded-xl'>
-                      </div>
-                      <div className='solucoes-dot-grid w-1/8 flex flex-col justify-between  text-2xl p-6 rounded-xl'>
-                      </div>
-                     <div className='solucoes-dot-grid w-1/8 flex flex-col justify-between  text-2xl p-6 rounded-xl'>
-                      </div>
-                       <div className='solucoes-dot-grid w-1/8 flex flex-col justify-between  text-2xl p-6 rounded-xl'>
-                      </div>
-                        <Button size='md' variant='secondary' className='justify-self-end self-end'>
+                      <Button onClick={() => scrollToSection('Contato')} size='md' variant='secondary' className='justify-center'>
                           Saiba mais
                         </Button> 
-                    </div>
                   </div>
                 </div>
 
@@ -371,7 +441,7 @@ const objetivos = [
         {/* Funcionalidades Principais */}
         <Section id='Funcionalidades'>
           <Container>
-            <div>
+            <div className='text-center'>
               <Heading size='md'>Funcionalidades Principais</Heading>
               <div className='!color:black  my-12'>
                 <CustomTabs />
@@ -391,15 +461,15 @@ const objetivos = [
                   </Heading>
                 </div>
             <div className="grid sm:grid-cols-1 md:grid-cols-2 relative">
-              <div className="bg-[#db324b] p-[72px_0] text-center relative">
+              <div className="bg-[#db324b] p-[24px_0] text-center relative">
 
-                <div className="sticky top-[82px] lg:top-[70px] pt-12 lg:pt-0 my-8 bg-[#db324b]">
+                <div className="sticky top-[82px] lg:top-[90px] pt-12 lg:pt-0 my-8 bg-[#db324b]">
                   <Heading size="md" className="text-white">
                     Benefício
                   </Heading>
                 </div>
 
-                <div className="flex flex-col gap-24 mt-6 lg:mt-24">
+                <div className="flex flex-col gap-24 mt-6 lg:mt-6">
                   {beneficios.map(({ title }, i) => (
                     <div
                       key={i}
@@ -408,7 +478,7 @@ const objetivos = [
                         flex gap-2
                         bg-gradient-to-r from-[#f8f8f8] via-white to-[#9b9b9b]
                         text-transparent bg-clip-text
-                        min-h-[120px] flex items-center justify-center
+                        min-h-[120px] items-center justify-center
                       "
                     >
                       <span>
@@ -422,19 +492,19 @@ const objetivos = [
 
               </div>
               
-              <div className="bg-white border-[2.5px] border-[#db324b] border-dashed py-[72px] text-center">
-                <div className="sticky top-[82px] lg:top-[70px] pt-12 lg:pt-0 my-8 bg-white">
+              <div className="bg-white border-[2.5px] border-[#db324b] border-dashed py-[24px] text-center">
+                <div className="sticky top-[82px] lg:top-[90px] pt-12 lg:pt-0 my-8 bg-white">
                   <Heading size="md">Impacto para sua Rede</Heading>
                 </div>
 
-                <div className="flex flex-col gap-24 mt-6 lg:mt-24">
+                <div className="flex flex-col gap-24 mt-6 lg:mt-8">
                   {beneficios.map(({ description }, i) => (
                     <div
                       key={i}
                       className="
                 
                         text-xl font-semibold
-                        min-h-[120px] flex items-center justify-center
+                        min-h-[120px] flex items-center justify-center mx-4
                       "
                     >
                       {description}
@@ -473,61 +543,118 @@ const objetivos = [
         
         </Section>
 
-        {/* Zoho Creator */}
-       <Section id='Low-Code'>
-          <Container display="grid"  className='lg:grid-cols-[1fr_2fr] justify-between items-center lg:justify-items-end gap-y-6 lg:gap-y-12 '>
-            <div className='flex justify-center lg:justify-self-start'>
-              <img src={creatorLogo} alt='' /> 
+      
+       <Section className='hidden'>
+          <Container display="grid" className='grid-cols-1 items-center gap-y-6 lg:gap-y-12 '>
+            <div className='flex flex-col lg:flex-row justify-center items-center gap-6'>
+              <img className='w-60' src={kafnetLogo} alt='' />
+              <div className='pb-12 text-center'>
+                <Heading size='md'>Por que Kafnet?</Heading>
+              </div>
             </div>
             <div>
-              <div className='pb-12 text-center lg:text-end'>
-                <Heading size='md'>Porque Zoho Creator?</Heading>
-              </div>
-              
-              <div className='flex flex-wrap justify-center lg:justify-end gap-2'>
+              <div className='grid grid-cols-1 lg:grid-cols-3  gap-4'>
                 {
                   zohoCreator.map(({title, description}, i) => (
-                    <Card title={title} description={description} className={`max-w-[255px] min-h-[400px] flex flex-col justify-end px-4 py-6 ${i === 2 ? 'bg-[#db324b] text-white' : i == 0 ? 'bg-[#0974B0] text-white' : '' } ${i == 1 && 'gap-20'} ` }/>
+                    <Card title={title} description={description} contentGap={`${i === 1 ?  ' gap-18' : '' } gap-3 `} className={`min-h-[400px] flex flex-col justify-between px-4 py-6 text-black ${i == 1 && 'gap-20'} border-none bg-gray-50` }>
+                      <div className='dot-grid text-[#db324b]'></div>
+                    </Card>
                   ))
                 }
               </div> 
-          
             </div>
           </Container>
        </Section>
-       {/* Próximos Passos */}
-        <Section>
+
+       <section className='py-[72px]'>
+          <Container className='text-center lg:px-6'>
+
+            <Paragraph>
+              Nossa expertise permite entendermos o que realmente faz uma franquia operar com fluidez  e aplicamos esse conhecimento direto na sua solução.
+            </Paragraph>
+          </Container>
+
+       </section>
+
+       <Section id='Low-Code' className='max-w-screen'>
+        <Container>
+          <div className='mb-4 text-center'>    
+            <Heading size='md'>Segurança em Low-Code</Heading>
+          </div>
+            <Carousel>
+            {segurancaFeatures.map((feature) => (
+              <div
+                key={feature.title}
+                className="    
+                  snap-start
+                  min-w-[45%]
+                  md:min-w-[45%]
+                  lg:min-w-[32%]
+                "
+              >
+                <FeatureCard feature={feature} />
+              </div>
+            ))}
+          </Carousel>
+
+        </Container>
+       </Section>
+       {/* Contato */}
+        <Section id='Contato'>
           <Container className='text-center lg:text-left'>
-            <Heading size='md' className='mb-12'>Próximos passos</Heading>
-            <div className='grid sm:grid-cols-1 md:grid-cols-2 
+            <Heading size='md' className='mb-12'>Cresça sua rede de franquias com segurança, previsibilidade e controle</Heading>
+            <div className='grid sm:grid-cols-1 lg:grid-cols-2      
+                justify-evenly gap-y-8 
+                gap-x-12
+              ' >
+                <div className='grid grid-flow-row gap-y-8 lg:justify-items-start items-center'>
+                  <div>  
+                    <p className='text-[20px]'> Agende agora uma demonstração!</p>
+                  </div>
+                  <div className='border-[2px] border-[#db324b] border-dashed py-12 px-8 rounded-2xl'>
+                    <ul className='flex flex-col gap-3 text-md md:text-xl items-center lg:items-start'>
+                      {objetivos.map(({boldText, text}) => (
+                        <li className='flex items-center flex-col lg:flex-row gap-4'>
+                          <Check className='text-emerald-500 w-6'/>
+                          <p>
+                            <strong className='whitespace-nowrap'>{boldText}</strong>{text}
+                          </p>
+                        
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+              
+                </div>
             
-            justify-evenly gap-8' >
+                {/* <img src={proximosPassos} alt='Pessoas'  className='self-end rounded-xl' /> */}
+                <div className='flex items-end'>
 
-            <div className='grid grid-flow-row gap-y-4 lg:justify-items-start items-center'>
-
-              <div>
+                <FormZoho/> 
+                </div>
             
-                <Paragraph><strong> Sua franquia pode evitar os erros comuns do crescimento desordenado. </strong> Agende agora
-  uma demonstração da plataforma da Kafnet e descubra como nossa solução pode:</Paragraph>
-              </div>
-              <div className='border-[2px] border-[#db324b] border-dashed py-12 px-8 rounded-2xl'>
-                <ul className='flex flex-col gap-3 text-xl items-start'>
-                  {objetivos.map((objetivo) => (
-                    <li className='flex items-center gap-2'>
-                      <Check className='text-emerald-500'/>
-                      {objetivo?.text}</li>
-                  ))}
-                </ul>
-              </div>
-              <Button size='md'>Solicitar demonstração</Button>
-            </div>
-            <div >
-             <Card hasImage={true} /> 
-            </div>
             </div>
           </Container>
         </Section>
+        {/*}
+        <Section className=''>
+          <Container>
+       
+          </Container>
+        </Section>
+        */}
+        {/*}
+        <Section>
+          <Container>
+             <iframe frameborder="0" id="iframewin" width="100%" height="100%" src="https://nevps-zgph.maillist-manage.com/ua/Optin?od=11287ecd08309c&zx=13361c566&tD=114e4d59259f967a9&sD=114e4d5925a623f73"></iframe>
+          </Container>
+        </Section>
+        */}
 
+        
+        <Footer/>
+      {/*  <VideoDialog onHandleToggleDialog={handleToggleDialog} isDialogOpen={isDialogOpen} /> */}
+        <WhatsAppFloater/>
       </main>
     </ThemeProvider>
   )
